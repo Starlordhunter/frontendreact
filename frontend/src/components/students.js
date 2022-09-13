@@ -24,6 +24,7 @@ class Students extends Component {
         .then(
             data =>{
                 this.setState({students: data});
+                console.log('date:', data[0])
                 console.log('Successfully fetch')
             }
 
@@ -32,7 +33,12 @@ class Students extends Component {
 
     render(){
 
-        // console.log(this.state.students)
+        // console.log(this.state.students.Subject)
+        // if( this.state.students.length > 0 ) {
+        //     this.state.students.map(a=> {
+        //         console.log('Subject:', a);
+        //     });
+        // }        
         
         // if(this.state.students && this.state.students.length>0)
         return (
@@ -40,20 +46,34 @@ class Students extends Component {
                 <h1>Students</h1>
                 <div>
                     {
-                        Array.from(this.state.students).map(a=>{
+                        this.state.students.map(a=>{
                             console.log(a)
                             return (
                                 <div>
-                                    {
-                                        a.Subject.map((b,i)=>{
-                                            return(
-                                                <div >
-                                                    <h3 key={i}>{b.subject_name}</h3>
-                                                </div>
-                                            );
+                                    <h3>{a.class_name}</h3>
+                                    <h3>{a.count_of_students}</h3>
+                                    {   
+                                        a.student_in_classes?.length ? 
+                                        a.student_in_classes.map((b,i)=>{
+                                        
+                                        return (
+                                            <div>
+                                                <ol key={i}>{b.student_name}</ol>
+                                                {
+                                                    b.subject_taken?.length ?
+                                                    b.subject_taken.map((c,i)=> {
+                                                        return (
+                                                            <li key={i}>{c.subject_name}</li>
+                                                        );
+                                                    })
+                                                    :null
+                                                }
+                                            </div>
+                                           
+                                        );                  
                                         })
+                                        :null
                                     }
-                                    
                                 </div>
                             );
                         }    
