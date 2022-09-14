@@ -44,41 +44,61 @@ class Students extends Component {
         return (
             <div>
                 <h1>Students</h1>
-                <div>
+                <table align='center' border='1px solid'>
+                    <tr>
+                        <th>Class</th>
+                        <th>Number of Students</th>
+                        <th>Student in Class</th>
+                    </tr>
+                    
+                        
                     {
                         this.state.students.map(a=>{
                             console.log(a)
                             return (
-                                <div>
-                                    <h3>{a.class_name}</h3>
-                                    <h3>{a.count_of_students}</h3>
+                                <>
+                                <tr>
+                                    <td >{a.class_name}</td>
+                                    <td>{a.count_of_students}</td>
+                                    <td>
                                     {   
                                         a.student_in_classes?.length ? 
                                         a.student_in_classes.map((b,i)=>{
                                         
                                         return (
-                                            <div>
-                                                <ol key={i}>{b.student_name}</ol>
+                                            <>
+                                                <h3 key={i}>{b.student_name}</h3>
+                                                <td>
                                                 {
                                                     b.subject_taken?.length ?
                                                     b.subject_taken.map((c,i)=> {
                                                         return (
-                                                            <li key={i}>{c.subject_name}</li>
+                                                            <>
+                                                                <ul>
+                                                                    <li key={i}>{c.subject_name}</li>  
+                                                                </ul>
+                                                            </>
+                                                            
                                                         );
                                                     })
                                                     :null
-                                                }
-                                            </div>
+                                                }</td>
+                                            </>
                                            
-                                        );                  
+                                        );            
                                         })
                                         :null
-                                    }
-                                </div>
+                                    }</td>  
+                                </tr>
+                                </>
                             );
                         }    
                         )
                     }
+                    
+                </table>
+                <div>
+                    
                 </div>
                 <button onClick={this.loadStudents}>Load Students</button>
             </div>
