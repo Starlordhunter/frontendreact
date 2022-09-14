@@ -22,7 +22,7 @@ class Teachers extends Component {
         .then(
             data =>{
                 this.setState({teachers: data})
-                console.log(this.props.auth)
+                console.log(this.props.role)
             }
         ).catch( error => console.error(error))
     }
