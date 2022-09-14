@@ -45,51 +45,68 @@ class Principal extends Component {
             <div>
                 <h1>Principal View</h1>
                 <div>
+                    <table border='1px solid' align='center'>
+                        <thead>
+                            <tr>
+                                <th>Teachers</th>
+                                <th>Class</th>
+                                <th>Count of Students</th>
+                                <th>Student</th>
+                            </tr>
+                        </thead>
+                    
                     {
                         this.state.principal.map(a=>{
                             console.log(a)
                             return (
-                                <div>
+                                <>
+                                <tr>
+
+                                <td>
                                     {
                                         a.teacher_info?.length ?
                                         a.teacher_info.map((teacher,i)=> {
                                             return(
-                                                <div>
-                                                    <h3 key={i}>{teacher.teacher_name}</h3>
-                                                </div>
+                                                <>
+                                                   <h3 key={i}>{teacher.teacher_name}</h3>
+                                                </>
                                             );
                                         })
                                         :null
-                                    }
-                                    <h3>{a.class_name}</h3>
-                                    <h3>Count of Students: {a.count_of_students}</h3>
+                                    }</td> 
+                                    <td><h3>{a.class_name}</h3></td>
+                                    <td><h3>{a.count_of_students}</h3></td>
+                                    <td>
                                     {   
                                         a.student_in_classes?.length ? 
                                         a.student_in_classes.map((b,i)=>{
                                         
                                         return (
-                                            <div>
-                                                <ol key={i}>{b.student_name}</ol>
+                                            <>
+                                                <h3 key={i}>{b.student_name}</h3>
+                                                <td>
                                                 {
                                                     b.subject_taken?.length ?
                                                     b.subject_taken.map((c,i)=> {
                                                         return (
                                                             <li key={i}>{c.subject_name}</li>
+                                                            
                                                         );
                                                     })
                                                     :null
-                                                }
-                                            </div>
+                                                }</td>
+                                            </>
                                            
                                         );                  
                                         })
                                         :null
-                                    }
-                                </div>
+                                    }</td>
+                                    </tr>
+                                </>
                             );
                         }    
                         )
-                    }
+                    }</table>
                 </div>
                 <button onClick={this.loadPrincipal}>Load Principal View</button>
             </div>
