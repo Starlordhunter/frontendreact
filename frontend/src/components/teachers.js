@@ -1,4 +1,6 @@
 import React, { Component} from 'react';
+import {Link} from 'react-router-dom';
+
 
 class Teachers extends Component {
 
@@ -20,13 +22,17 @@ class Teachers extends Component {
         .then(
             data =>{
                 this.setState({teachers: data})
+                console.log(this.props.auth)
             }
         ).catch( error => console.error(error))
     }
 
     render(){
-        return (
+
+        
+            return (
             <div>
+                
                 <h1>Teachers</h1>
                 { this.state.teachers.map( teacher => {
                     return <h3 key={teacher.id}>{teacher.teacher_name}</h3>
@@ -34,6 +40,8 @@ class Teachers extends Component {
                 <button onClick={this.loadTeachers}>Load Teachers</button>
             </div>
         );
+        
+        
     }
     
 }
