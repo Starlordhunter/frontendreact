@@ -17,7 +17,7 @@ class Login extends Component {
         .then(
             data =>{
                 this.props.userLogin(data.token);
-                console.log("Successfully log in")
+                console.log(data.user.profile.role)
             }
         ).catch( error => console.error(error))
     }
