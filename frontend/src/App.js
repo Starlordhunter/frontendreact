@@ -10,11 +10,17 @@ import { Router,Route,Routes, Link} from 'react-router-dom';
 function App() {
 
   const [token, setToken] = useState('');
+  const [role, setRole] = useState();
 
   const userLogin = (tok) => {
     // console.log(tok);
     setToken(tok);
     
+  }
+
+  const userRole = (rol) =>{
+
+    setRole(rol)
   }
 
   return (
@@ -36,8 +42,8 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path='/login' element={<Login userLogin={userLogin}/>}/>
-        <Route path='/teachers' element={<Teachers token={token}/>}/>
+        <Route path='/login' element={<Login userLogin={userLogin} userRole={userRole}/>}/>
+        <Route path='/teachers' element={<Teachers token={token} role={role}/>}/>
         <Route path='/students' element={<Students token={token}/>}/>
         <Route path='/principal' element={<Principal token={token}/>}/>
       </Routes>
